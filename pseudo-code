@@ -1,0 +1,12 @@
+What is happening:
+
+1. React fetches (gets data) from url
+2. React uses the fetch api to perform a POST request to the url it fetched data from (/api)
+3. React sends a request containing a newUser to the server
+4. Express takes the POST request at /api using app.post()
+5. Express accesses the request using the req object and appends the newUser onto the existing users array
+
+What needs to happen:
+
+1. Instead of sending a POST request containing a predefined newUser, need to update the newUser's values using an onChange function with a text input field
+2. Instead of Express having the users array, need to create a DB with the users
