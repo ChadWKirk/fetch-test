@@ -21,9 +21,9 @@ function App() {
       return;
     });
 
-    await fetch("http://localhost:5000/api")
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    // await fetch("http://localhost:5000/api")
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data));
   }
 
   return (
