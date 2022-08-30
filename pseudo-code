@@ -8,7 +8,8 @@ What is happening:
 
 What needs to happen:
 
-*1. Display user names in React - fetch all docs from db, only name field projection, render ul and have each li contain user.name
-2. Make Edit button and Delete button
+- 1. Display user names in React - fetch all docs from db, only name field projection, render ul and have each li contain user.name
+- 2. Make Edit button and Delete button
+
 3. Make edit function
-4. Make Delete function
+4. Make Delete function - need to use a function to get doc id so it knows which one to delete
