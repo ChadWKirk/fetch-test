@@ -8,5 +8,4 @@ What is happening:
 
 What needs to happen:
 
-1. Instead of sending a POST request containing a predefined newUser, need to update the newUser's values using an onChange function with a text input field
-2. Instead of Express having the users array, need to create a DB with the users
+Need to display the database users

@@ -19,11 +19,21 @@ app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
 //...this
-//old GET stuff
-// var users = [{ name: "charlie" }, { name: "blake" }];
 
 app.get("/api", (req, res) => {
-  res.json("lets get it");
+  let db_connect = dbo.getDb();
+  const projection = { name: 1, _id: 0 };
+  db_connect
+    .collection("fetch")
+    .find()
+    .project(projection)
+    .toArray(function (err, result) {
+      if (err) {
+        res.status(400).send("Error fetching listings!");
+      } else {
+        res.json(result);
+      }
+    });
 });
 
 //Learn this...
