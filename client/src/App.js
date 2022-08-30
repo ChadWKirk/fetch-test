@@ -1,4 +1,5 @@
 import React from "react";
+import FetchUsers from "./components/FetchUsers";
 
 function App() {
   let newUser = { name: "" };
@@ -8,15 +9,9 @@ function App() {
   }
 
   async function onSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
 
     console.log(newUser.name);
-
-    // const newUser = { name: "chad" };
-
-    await fetch("http://localhost:5000/api")
-      .then((res) => res.json())
-      .then((data) => console.log(data));
 
     await fetch("http://localhost:5000/api", {
       method: "POST",
@@ -29,13 +24,14 @@ function App() {
       return;
     });
 
-    // await fetch("http://localhost:5000/api")
-    //   .then((res) => res.json())
-    //   .then((data) => console.log(data));
+    await fetch("http://localhost:5000/api")
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   }
 
   return (
     <div>
+      <FetchUsers />
       <form onSubmit={onSubmit}>
         <div>
           <label htmlFor="nameInput">Name: </label>
@@ -46,7 +42,7 @@ function App() {
             onChange={onChangeFunc}
           />
         </div>
-        <button type="submit">submit</button>
+        <button type="submit">Submit User</button>
       </form>
     </div>
   );

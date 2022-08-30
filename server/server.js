@@ -11,6 +11,9 @@ app.use(express.urlencoded({ extended: false }));
 // get driver connection
 const dbo = require("./db/conn");
 
+// This help convert the id from string to ObjectId for the _id.
+const ObjectId = require("mongodb").ObjectId;
+
 app.listen(port, () => {
   // perform a database connection when server starts
   dbo.connectToServer(function (err) {
@@ -22,11 +25,11 @@ app.listen(port, () => {
 
 app.get("/api", (req, res) => {
   let db_connect = dbo.getDb();
-  const projection = { name: 1, _id: 0 };
+  //const projection = { name: 1, _id: 0 };
   db_connect
     .collection("fetch")
     .find()
-    .project(projection)
+    // .project(projection)
     .toArray(function (err, result) {
       if (err) {
         res.status(400).send("Error fetching listings!");
@@ -49,6 +52,16 @@ app.post("/api", (req, response) => {
   });
 
   console.log();
+});
+
+app.delete("/api", (req, response) => {
+  let db_connect = dbo.getDb();
+  let myQuery = { _id: ObjectId(req.params.id) };
+  db_connect.collection("fetch").deleteOne(myQuery, function (err, obj) {
+    if (err) throw err;
+    console.log("1 document deleted");
+    response.json(obj);
+  });
 });
 
 //Old post request handler
