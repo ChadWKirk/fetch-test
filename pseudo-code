@@ -11,6 +11,6 @@ What needs to happen:
 - 1. Display user names in React - fetch all docs from db, only name field projection, render ul and have each li contain user.name
 - 2. Make Edit button and Delete button
 
-3. Make edit function
+3. Make edit function - When click edit button, turn li into input with the li current value. create submit button to submit edit to DB and cancel button to cancel edit.
 
 - 4. Make Delete function - need to use a function to get doc id so it knows which one to delete

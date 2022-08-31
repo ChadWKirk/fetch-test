@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from "react";
 
 const UsersList = () => {
+  //Get current users
   const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
 
   const fetchUsers = () => {
     fetch("http://localhost:5000/api")
       .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        setUsers(res);
+      .then((data) => {
+        console.log(data);
+        setUsers(data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  //delete a user
   const delUser = (id) => {
     window.location.reload();
     console.log("delete");
