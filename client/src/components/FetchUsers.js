@@ -19,6 +19,14 @@ const UsersList = () => {
       });
   };
 
+  const delUser = (id) => {
+    window.location.reload();
+    console.log("delete");
+    fetch(`http://localhost:5000/api/${id}`, {
+      method: "DELETE",
+    });
+  };
+
   return (
     <div>
       <h3>Users: </h3>
@@ -27,7 +35,7 @@ const UsersList = () => {
           <li key={user._id}>
             {user.name}
             <button>Edit</button>
-            <button>Delete User</button>
+            <button onClick={() => delUser(user._id)}>Delete User</button>
           </li>
         ))}
       </ul>

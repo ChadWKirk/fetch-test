@@ -12,4 +12,5 @@ What needs to happen:
 - 2. Make Edit button and Delete button
 
 3. Make edit function
-4. Make Delete function - need to use a function to get doc id so it knows which one to delete
+
+- 4. Make Delete function - need to use a function to get doc id so it knows which one to delete

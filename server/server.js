@@ -2,12 +2,12 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const port = process.env.PORT || 5000;
-require("dotenv").config({ path: "./config.env" }); //learn this
+require("dotenv").config({ path: "./config.env" });
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-//learn this to...
+
 // get driver connection
 const dbo = require("./db/conn");
 
@@ -21,7 +21,6 @@ app.listen(port, () => {
   });
   console.log(`Server is running on port: ${port}`);
 });
-//...this
 
 app.get("/api", (req, res) => {
   let db_connect = dbo.getDb();
@@ -39,14 +38,13 @@ app.get("/api", (req, res) => {
     });
 });
 
-//Learn this...
 app.post("/api", (req, response) => {
   let db_connect = dbo.getDb();
   let newUser = {
     name: req.body.name,
   };
   db_connect.collection("fetch").insertOne(newUser, function (err, res) {
-    //create collection "users" and instert newUser
+    //create collection "users" and insert newUser
     if (err) throw err;
     response.json(res);
   });
@@ -54,7 +52,7 @@ app.post("/api", (req, response) => {
   console.log();
 });
 
-app.delete("/api", (req, response) => {
+app.delete("/api/:id", (req, response) => {
   let db_connect = dbo.getDb();
   let myQuery = { _id: ObjectId(req.params.id) };
   db_connect.collection("fetch").deleteOne(myQuery, function (err, obj) {
