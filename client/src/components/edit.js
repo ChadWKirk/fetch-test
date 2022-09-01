@@ -12,7 +12,7 @@ const Edit = () => {
     async function fetchData() {
       const id = params.id.toString();
       const response = await fetch(
-        `http://localhost:5000/api/user/${params.id.toString()}` //need to point to a correct url
+        `http://localhost:5000/api/user/${params.id.toString()}` 
       );
 
       if (!response.ok) {

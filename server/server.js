@@ -39,6 +39,7 @@ app.get("/api", (req, res) => {
     });
 });
 
+//fetch sent from edit btn to get user being updated. :id comes from - edit btn gets pushed -> gets user._id from the key given to each <li> in map() -> goes to 3000/api/update/:id  (edit.js) -> fetches from /api/user/:id. gets :id from useParams() using the current URL (3000/api/update/:id)
 app.get("/api/user/:id", (req, res) => {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId(req.params.id) };
@@ -48,6 +49,7 @@ app.get("/api/user/:id", (req, res) => {
   });
 });
 
+//submit user
 app.post("/api", (req, response) => {
   let db_connect = dbo.getDb();
   let newUser = {
@@ -62,6 +64,7 @@ app.post("/api", (req, response) => {
   console.log();
 });
 
+//update user submit button
 app.post("/api/update/:id", (req, response) => {
   let db_connect = dbo.getDb();
   let myQuery = { _id: ObjectId(req.params.id) };
