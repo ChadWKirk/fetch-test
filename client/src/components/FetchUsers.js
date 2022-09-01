@@ -36,7 +36,9 @@ const UsersList = () => {
         {users?.map((user) => (
           <li key={user._id}>
             {user.name}
-            <button>Edit</button>
+            <a href={`http://localhost:3000/api/update/${user._id}`}>
+              <button>Edit</button>
+            </a>
             <button onClick={() => delUser(user._id)}>Delete User</button>
           </li>
         ))}

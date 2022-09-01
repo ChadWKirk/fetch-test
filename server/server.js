@@ -10,6 +10,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // get driver connection
 const dbo = require("./db/conn");
+const { response } = require("express");
 
 // This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
@@ -38,6 +39,15 @@ app.get("/api", (req, res) => {
     });
 });
 
+app.get("/api/user/:id", (req, res) => {
+  let db_connect = dbo.getDb();
+  let myquery = { _id: ObjectId(req.params.id) };
+  db_connect.collection("fetch").findOne(myquery, function (err, result) {
+    if (err) throw err;
+    res.json(result);
+  });
+});
+
 app.post("/api", (req, response) => {
   let db_connect = dbo.getDb();
   let newUser = {
@@ -52,6 +62,19 @@ app.post("/api", (req, response) => {
   console.log();
 });
 
+app.post("/api/update/:id", (req, response) => {
+  let db_connect = dbo.getDb();
+  let myQuery = { _id: ObjectId(req.params.id) };
+  let newvalues = { $set: { name: req.body.name } };
+  db_connect
+    .collection("fetch")
+    .updateOne(myQuery, newvalues, function (err, res) {
+      if (err) throw err;
+      console.log("1 document updated");
+      response.json(res);
+    });
+});
+
 app.delete("/api/:id", (req, response) => {
   let db_connect = dbo.getDb();
   let myQuery = { _id: ObjectId(req.params.id) };
@@ -61,12 +84,3 @@ app.delete("/api/:id", (req, response) => {
     response.json(obj);
   });
 });
-
-//Old post request handler
-// app.post("/api", (req, res) => {
-//   let newUser = {
-//     name: req.body.name,
-//   };
-//   users.push(newUser);
-//   res.json("ok");
-// });
