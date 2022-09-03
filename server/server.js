@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // get driver connection
 const dbo = require("./db/conn");
-const { response } = require("express");
+//const { response } = require("express"); //not used?
 
 // This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
