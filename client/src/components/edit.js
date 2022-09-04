@@ -10,8 +10,10 @@ const Edit = () => {
 
   useEffect(() => {
     async function fetchData() {
+      //fetchData() returns a promise
       const id = params.id.toString();
       const response = await fetch(
+        //when calling response, pause JS execution until fetch is done
         `http://localhost:5000/api/user/${params.id.toString()}`
       );
 
@@ -21,7 +23,7 @@ const Edit = () => {
         return;
       }
 
-      const record = await response.json();
+      const record = await response.json(); //when record is called, pause JS execution until response is turned into JSON.
       if (!record) {
         window.alert(`Record with id ${id} not found`);
         navigate("/");
